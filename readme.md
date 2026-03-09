@@ -31,7 +31,11 @@ Windows	C:\Program Files\PostgreSQL\16\data
 
 ## variable denvironnement à fixer
 PGDATA répertoire du cluster  pour les BD.
+
 PGPORT Spécifie le port d'ecoute.
+
 PGUSER Utilisateur PostgreSQL par défaut utilisé lors des connexions.
+
 PGDATABASE  Permet de définir la BD par défaut  de psql.
+
 PGPASSWORD Permet de définir le password par défaut.
