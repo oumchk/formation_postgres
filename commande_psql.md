@@ -26,3 +26,11 @@
 ### \dn+ [pattern] :Liste les schemas 
 ### \df[+] [pattern] : Liste les fonctions 
 ### \q or  ^d or quit or exit
+
+
+## Commandes d’information
+### \cd [ directory ] : changer le répertoire courant
+### \! [ command ] : execute une commande systeme (linux/window)
+### \conninfo : affiche les information de la connection courante
+### \?: aides sur les commandes psql 
+### \h [command] : aide sur les commandes SQL
