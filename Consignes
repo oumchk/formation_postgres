@@ -1,0 +1,10 @@
+#se placer dans le dossier qui contien le Dockerfile et le docker-compose 
+
+# Construire et relancer le container
+docker compose up -d --build
+
+# Entrer dans le container
+docker exec -it ubuntu-tp bash
+
+# pour arreter container
+docker compose down

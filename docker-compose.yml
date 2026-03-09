@@ -1,0 +1,15 @@
+services:
+  ubuntu-tp:
+    build: .
+    container_name: ubuntu-tp
+    hostname: ubuntu-tp
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+    volumes:
+      - tp-data:/root/travaux
+
+volumes:
+  tp-data:
+    driver: local
+    name: ubuntu-tp-travaux
