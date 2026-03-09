@@ -26,8 +26,11 @@ sudo apt install postgresql-16 postgresql-client-16
 
 ## Repertoire d'installation
 Debian/Ubuntu	/var/lib/postgresql/16/main
+
 RedHat/CentOS	/var/lib/pgsql/16/data
+
 Windows	C:\Program Files\PostgreSQL\16\data
+
 
 ## variable denvironnement à fixer
 PGDATA répertoire du cluster  pour les BD.
