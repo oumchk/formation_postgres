@@ -23,3 +23,8 @@ useradd postgres
 passwd postgres
 sudo apt install -y postgresql-common
 sudo apt install postgresql-16 postgresql-client-16
+
+#Repertoire d'installation
+Debian/Ubuntu	/var/lib/postgresql/16/main
+RedHat/CentOS	/var/lib/pgsql/16/data
+Windows	C:\Program Files\PostgreSQL\16\data
