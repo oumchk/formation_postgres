@@ -1,7 +1,5 @@
 
 
-
-
 ## Insatallation 
 useradd postgres
 
@@ -58,3 +56,9 @@ PGUSER Utilisateur PostgreSQL par défaut utilisé lors des connexions.
 PGDATABASE  Permet de définir la BD par défaut  de psql.
 
 PGPASSWORD Permet de définir le password par défaut.
+
+
+## set  binary 
+sudo su postgres 
+echo 'export PATH=$PATH:/usr/lib/postgresql/16/bin' >> ~/.bashrc
+source ~/.bashrc
