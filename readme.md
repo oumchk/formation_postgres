@@ -60,5 +60,7 @@ PGPASSWORD Permet de définir le password par défaut.
 
 ## set  binary 
 sudo su postgres 
+
 echo 'export PATH=$PATH:/usr/lib/postgresql/16/bin' >> ~/.bashrc
+
 source ~/.bashrc
