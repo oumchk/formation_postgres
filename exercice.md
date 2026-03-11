@@ -77,3 +77,27 @@ SELECT * FROM dept;
 \! pwd
 
 
+
+
+
+## 1 
+se connecter et 
+SELECT current_schemas(true);
+SHOW search_path;
+
+SELECT current_setting('search_path') ;
+
+## 2 
+SELECT * FROM pg_views WHERE schemaname='edbuser';
+## 3 
+ouvrir deux terminal et et connecter vous sur chaque terminal avec un user 
+SELECT usename,now()-backend_start AS "Total Connection
+Time", pid FROM pg_stat_activity;
+## 4 
+reprendre la requete du point 3
+
+SELECT pg_terminate_backend(pid);
+
+verifier avec 
+SELECT usename,now()-backend_start AS "Total Connection
+Time", pid FROM pg_stat_activity;
