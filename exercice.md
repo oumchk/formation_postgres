@@ -101,3 +101,5 @@ SELECT pg_terminate_backend(pid);
 verifier avec 
 SELECT usename,now()-backend_start AS "Total Connection
 Time", pid FROM pg_stat_activity;
+
+
