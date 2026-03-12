@@ -3,8 +3,11 @@
 select rolname from pg_roles where rolcanlogin ;
 -
 ```
-GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO storeuser;
-GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA storeuser TO storeuser;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL PRIVILEGES ON TABLES TO storeuser;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL PRIVILEGES ON SEQUENCES TO storeuser;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA storeuser GRANT ALL PRIVILEGES ON TABLES TO storeuser;
+ALTER DEFAULT PRIVILEGES IN SCHEMA storeuser GRANT ALL PRIVILEGES ON SEQUENCES TO storeuser;
 
 create table storeuser.compte (gestionnaire text, company text,contact_email text);
 
