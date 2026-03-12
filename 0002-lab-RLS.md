@@ -5,6 +5,8 @@ select rolname from pg_roles where rolcanlogin ;
 ```
 create table storeuser.compte (gestionnaire text, company text,contact_email text);
 
+select * from pg_roles where rolcanlogin;
+
 INSERT INTO storeuser.compte (gestionnaire, company, contact_email)
 SELECT (ARRAY['user_responsable','user_admin','storeuser','user_agent'])[floor(random() * 4 + 1)::int] AS gestionnaire,
     'company_' || gs AS company,
