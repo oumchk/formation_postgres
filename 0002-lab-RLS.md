@@ -3,6 +3,9 @@
 select rolname from pg_roles where rolcanlogin ;
 -
 ```
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO storeuser;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA storeuser TO storeuser;
+
 create table storeuser.compte (gestionnaire text, company text,contact_email text);
 
 select * from pg_roles where rolcanlogin;
@@ -40,9 +43,16 @@ refaire la meme operation pour les comptes 'user_responsable','user_admin','user
 ```
 ---------
 
+
 ## policie 2
 ```
+
+verifier salaire max
+select max(sal) from storeuser.emp ;
+select count(*)  from storeuser.emp ;
+
 ALTER TABLE storeuser.emp ENABLE ROW LEVEL SECURITY;
+
 
 CREATE POLICY agent_salary_policy
 ON storeuser.emp
@@ -53,6 +63,14 @@ ON storeuser.emp
 FOR SELECT
 TO responsable
 USING (true);
+
+sur le terminal
+se connecter avec user_agent executer
+select max(sal) from storeuser.emp ;
+select count(*)  from storeuser.emp ;
+
+faire la meme operation avec user_responsable
+
 
 --- update 
 CREATE POLICY agent_salary_update_policy
