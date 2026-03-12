@@ -55,10 +55,13 @@ refaire la meme operation pour les comptes 'user_responsable','user_admin','user
 
 ## policie 2
 ```
+se connecter a pg_admin avec l'utilisateur
+postgres
 
 verifier salaire max
 select max(sal) from storeuser.emp ;
 select count(*)  from storeuser.emp ;
+
 
 ALTER TABLE storeuser.emp ENABLE ROW LEVEL SECURITY;
 
@@ -78,7 +81,23 @@ se connecter avec user_agent executer
 select max(sal) from storeuser.emp ;
 select count(*)  from storeuser.emp ;
 
+inserer une ligne
+INSERT INTO storeuser.emp (empno, ename, job, mgr, hiredate, sal, comm, deptno)
+VALUES ((select max(empno)+1 from storeuser.emp), 'SMITH', 'CLERK', 7902, '1980-12-17T00:00:00.000', '4800.00', NULL, 20);
+update storeuser.emp  set sal=1500 where empno=7654;
+
 faire la meme operation avec user_responsable
+select max(sal) from storeuser.emp ;
+select count(*)  from storeuser.emp ;
+inserer une ligne
+INSERT INTO storeuser.emp (empno, ename, job, mgr, hiredate, sal, comm, deptno)
+VALUES ((select max(empno)+1 from storeuser.emp), 'SMITH', 'CLERK', 7902, '1980-12-17T00:00:00.000', '4800.00', NULL, 20);
+update storeuser.emp  set sal=1500 where empno=7654;
+
+
+comparerer les resultats
+essayer dinserer
+
 
 
 --- update 
@@ -95,5 +114,19 @@ FOR UPDATE
 TO responsable
 -- USING (sal <= 2000)
 WITH CHECK (true);
+
+
+se connecter avec user_agent executer
+inserer une ligne
+INSERT INTO storeuser.emp (empno, ename, job, mgr, hiredate, sal, comm, deptno)
+VALUES ((select max(empno)+1 from storeuser.emp), 'SMITH', 'CLERK', 7902, '1980-12-17T00:00:00.000', '4800.00', NULL, 20);
+
+INSERT INTO storeuser.emp (empno, ename, job, mgr, hiredate, sal, comm, deptno)
+VALUES ((select max(empno)+1 from storeuser.emp), 'SMITH', 'CLERK', 7902, '1980-12-17T00:00:00.000', '1800.00', NULL, 20);
+
+update storeuser.emp set sal=2500 where empno=7654;
+update storeuser.emp set sal=1500 where empno=7654;
+
+
 ```
 -----------------------------------------------------------
