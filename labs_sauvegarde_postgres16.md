@@ -479,7 +479,7 @@ sudo -u postgres /usr/local/bin/sync_wal_archives.sh
 
 
 ### 5.1 Préparation du scénario PITR — Création de la timeline
-
+##### $BACKUP_DIR faire un backup ------ initial en format plain 
 ```sql
 -- sudo -u postgres psql -d formation
 --Notez précisément les horodatages T0, T1 et T2.** Ils sont indispensables pour le PITR par timestamp.
@@ -530,6 +530,7 @@ sudo chown -R postgres:postgres /var/lib/postgresql/16/main
 sudo chmod 700 /var/lib/postgresql/16/main
 
 # ÉTAPE 4 : Configurer la cible de restauration
+## UBBUNUTU le chemin   /etc/postgresql/16/main/postgresql.conf
 sudo tee -a /var/lib/postgresql/16/main/postgresql.conf << 'EOF'
 # PITR — Mode 1 : Timestamp
 restore_command         = 'cp /var/lib/postgresql/16/sauvegardes/archives/%f %p'
