@@ -431,6 +431,17 @@ sudo systemctl reload postgresql
 # Vérifier l'archivage
 sudo -u postgres psql -c "SELECT * FROM pg_stat_archiver;"
 ```
+##### cree la sauvegarde de base 
+```bash
+sudo -u postgres pg_basebackup \
+  -h localhost \
+  -U postgres \
+  -D /var/lib/postgresql/sauvegardes/basebackup/plain_$(date +%Y%m%d_%H%M%S) \
+  --format=plain \
+  --wal-method=stream \
+  --checkpoint=fast \
+  --progress
+```
 
 ### 4.2 Surveillance des archives WAL
 
