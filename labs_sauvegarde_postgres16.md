@@ -536,6 +536,7 @@ sudo systemctl stop postgresql@16-main
 sudo mv /var/lib/postgresql/16/main /var/lib/postgresql/16/main.avant_pitr
 
 # ÉTAPE 3 : Copier le basebackup dans main
+-- $BACKUP_DIR == /var/lib/postgresql/sauvegardes/basebackup/plain_
 sudo cp -a $BACKUP_DIR /var/lib/postgresql/16/main
 sudo chown -R postgres:postgres /var/lib/postgresql/16/main
 sudo chmod 700 /var/lib/postgresql/16/main
