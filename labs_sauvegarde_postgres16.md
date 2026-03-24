@@ -530,7 +530,7 @@ SELECT pg_switch_wal();
 
 ```bash
 # ÉTAPE 1 : Arrêter PostgreSQL
-sudo systemctl stop postgresql
+sudo systemctl stop postgresql@16-main
 
 # ÉTAPE 2 : Sauvegarder le répertoire actuel
 sudo mv /var/lib/postgresql/16/main /var/lib/postgresql/16/main.avant_pitr
