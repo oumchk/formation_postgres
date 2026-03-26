@@ -1,32 +1,45 @@
-CREATE TABLE IF NOT EXISTS public.transactions
-(
-    id integer NOT NULL DEFAULT nextval('transactions_id_seq'::regclass),
-    employe_id integer,
-    montant numeric(10,2),
-    type_op character varying(20) COLLATE pg_catalog."default",
-    created_at timestamp without time zone DEFAULT now(),
-    CONSTRAINT transactions_pkey PRIMARY KEY (id),
-    CONSTRAINT transactions_employe_id_fkey FOREIGN KEY (employe_id)
-        REFERENCES public.employes (id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
-)
 
-TABLESPACE pg_default;
+```sql
+CREATE TABLE employes (
+    id          SERIAL PRIMARY KEY,
+    nom         VARCHAR(100) NOT NULL,
+    poste       VARCHAR(100),
+    salaire     NUMERIC(10,2),
+    actif       BOOLEAN DEFAULT true,
+    created_at  TIMESTAMP DEFAULT NOW()
+);
 
-ALTER TABLE IF EXISTS public.transactions
-    OWNER to postgres;
+CREATE TABLE transactions (
+    id          SERIAL PRIMARY KEY,
+    employe_id  INTEGER REFERENCES employes(id),
+    montant     NUMERIC(10,2),
+    type_op     VARCHAR(20),
+    created_at  TIMESTAMP DEFAULT NOW()
+);
 
-CREATE TABLE IF NOT EXISTS public.employes
-(
-    id integer NOT NULL DEFAULT nextval('employes_id_seq'::regclass),
-    nom character varying(100) COLLATE pg_catalog."default" NOT NULL,
-    poste character varying(100) COLLATE pg_catalog."default",
-    salaire numeric(10,2),
-    actif boolean DEFAULT true,
-    created_at timestamp without time zone DEFAULT now(),
-    CONSTRAINT employes_pkey PRIMARY KEY (id)
-)
+INSERT INTO employes (nom, poste, salaire) VALUES
+  ('Alice Dupont',  'DBA',        4500.00),
+  ('Bob Martin',    'Développeur',3800.00),
+  ('Claire Lebrun', 'DevOps',     4200.00),
+  ('David Moreau',  'Analyste',   3600.00),
+  ('Eve Lambert',   'Manager',    5500.00);
 
-TABLESPACE pg_default;
+INSERT INTO transactions (employe_id, montant, type_op) VALUES
+  (1,1500.00,'prime'),(2,800.00,'prime'),
+  (3,1200.00,'remboursement'),(5,2000.00,'prime');
 
+SELECT 'employes'     AS tbl, COUNT(*) FROM employes
+UNION ALL
+SELECT 'transactions', COUNT(*) FROM transactions;
+
+
+
+INSERT INTO transactions (employe_id, montant, type_op)
+SELECT
+  (RANDOM()*4+1)::INTEGER,
+  ROUND((RANDOM()*5000)::NUMERIC, 2),
+  CASE WHEN RANDOM() < 0.5 THEN 'prime' ELSE 'remboursement' END
+FROM generate_series(1, 100000);
+
+
+```
