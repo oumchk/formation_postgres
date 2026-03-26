@@ -13,6 +13,7 @@ sudo make install
  
 # Vérifier l'installation
 ora2pg --version
+
 # Iinitialiser le projet 
 ora2pg --init_project nom_prj
  
@@ -24,9 +25,12 @@ ora2pg -c config/ora2pg.conf -t SHOW_REPORT --estimate_cost
 
  # Lister des objets 
 ora2pg -c config/ora2pg.conf -t SHOW_TABLE
+
 ora2pg -c config/ora2pg.conf -t SHOW_COLUMN
+
 ora2pg -c config/ora2pg.conf -t SHOW_INDEX
 
 # generer ddl 
- ora2pg -c config/ora2pg.conf -t ALL 
+ora2pg -c config/ora2pg.conf -t ALL 
+
 ora2pg -c config/ora2pg.conf -t TABLE(TRIGGER,INDEX ... ) -o schema.sql
