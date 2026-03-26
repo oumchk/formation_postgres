@@ -1,7 +1,9 @@
 # Installer DBD::Oracle via CPAN
 apt install -y libdbi-perl 
+
 cpan DBD::Oracle
-sudo env ORACLE_HOME=/opt/oracle/instantclient_12_2 \
+
+sudo env ORACLE_HOME=/opt/oracle/instantclient_12_2 
 cpan install DBD::Oracle
  
 wget https://github.com/darold/ora2pg/archive/refs/tags/v24.0.tar.gz
